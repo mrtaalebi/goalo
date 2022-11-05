@@ -8,7 +8,7 @@ COPY vendor ./vendor
 COPY cmd ./cmd
 COPY pkg ./pkg
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o goalo cmd/goalo/main.go
+RUN CGO_ENABLED=1 GOOS=linux go build -o goalo cmd/goalo/main.go
 
 FROM ubuntu:20.04
 
