@@ -1,5 +1,4 @@
-FROM golang:1.19.0-alpine3.16 as BUILD
-ADD /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+FROM golang:latest as BUILD
 
 WORKDIR /app
 
