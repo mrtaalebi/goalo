@@ -7,8 +7,8 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./trojan/fullchain.pem:/trojan/fullchain.pem
-      - ./trojan/privkey.pem:/trojan/privkey.pem
+      - /etc/letsencrypt/live/DOMAIN/fullchain.pem:/trojan/fullchain.pem
+      - /etc/letsencrypt/live/DOMAIN/privkey.pem:/trojan/privkey.pem
   fakehttp:
     image: nginx:1.23
     restart: always
