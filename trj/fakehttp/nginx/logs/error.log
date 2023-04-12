@@ -1,0 +1,9 @@
+2023/04/12 17:54:59 [error] 21#21: *2 open() "/fakehttp/fakehttp/index.html" failed (2: No such file or directory), client: 172.22.0.1, server: _, request: "GET / HTTP/1.1", host: "localhost"
+2023/04/12 17:54:59 [error] 21#21: *2 open() "/fakehttp/favicon.ico" failed (2: No such file or directory), client: 172.22.0.1, server: _, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2023/04/12 17:55:59 [error] 21#21: *1 open() "/fakehttp/fakehttp/index.html" failed (2: No such file or directory), client: 172.22.0.1, server: _, request: "GET / HTTP/1.1", host: "localhost"
+2023/04/12 17:56:47 [emerg] 33#33: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2023/04/12 17:56:47 [emerg] 33#33: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2023/04/12 17:56:47 [emerg] 33#33: bind() to 0.0.0.0:80 failed (98: Address already in use)
+2023/04/12 17:57:06 [error] 38#38: *3 open() "/fakehttp/fakehttp/index.html" failed (2: No such file or directory), client: 172.22.0.1, server: _, request: "GET / HTTP/1.1", host: "localhost"
+2023/04/12 18:06:21 [error] 20#20: *18 rewrite or internal redirection cycle while internally redirecting to "/js/bootstrap.js.map/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html", client: 172.22.0.1, server: _, request: "GET /js/bootstrap.js.map HTTP/1.1", host: "localhost"
+2023/04/12 18:06:21 [error] 20#20: *19 rewrite or internal redirection cycle while internally redirecting to "/css/bootstrap.css.map/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html/index.html", client: 172.22.0.1, server: _, request: "GET /css/bootstrap.css.map HTTP/1.1", host: "localhost"
