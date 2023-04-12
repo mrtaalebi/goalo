@@ -2,7 +2,7 @@
 version: '3.8'
 services:
   trojan:
-    image: teddysun/trojan:0.10
+    image: teddysun/trojan:0.10.6
     restart: always
     ports:
       - "443:443"
