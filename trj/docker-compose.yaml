@@ -12,8 +12,6 @@ services:
   fakehttp:
     image: nginx:1.23
     restart: always
-    ports:
-      - "80:80"
     volumes:
       - ./fakehttp/medi-html/:/fakehttp/
       - ./fakehttp/nginx/:/etc/nginx/
