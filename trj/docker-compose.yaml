@@ -2,24 +2,22 @@
 version: '3.8'
 services:
   trojan:
-    image: teddysun/trojan
+    image: teddysun/trojan:0.10
     restart: always
     ports:
       - "443:443"
     volumes:
       - ./trojan/fullchain.pem:/trojan/fullchain.pem
       - ./trojan/privkey.pem:/trojan/privkey.pem
-      - ./trojan/raw.tcp:/trojan/raw.tcp
-      - ./trojan/dh.param:/trjona/dh.param
   fakehttp:
     image: nginx:1.23
     restart: always
     volumes:
       - ./fakehttp/medi-html/:/fakehttp/
       - ./fakehttp/nginx/:/etc/nginx/
+      - ./fakehttp/nginx/logs/:/etc/nginx/logs/
   mysql:
     image: mysql:8.0
-    entrypoint: ["./entrypoint.sh"]
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -29,5 +27,4 @@ services:
       MYSQL_PASSWORD: trojan
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/entrypoint.sh:/entrypoint.sh
-      - ./mysql/intidb.sql:/initdb.sql
+      - ./mysql/create_users_table.sql:/docker-entrypoint-initdb.d/create_users_table.sql

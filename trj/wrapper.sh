@@ -1,3 +1,3 @@
 #!/bin/sh
-mysqld
+/entrypoint.sh
 mysql trojan < /initdb.sql
