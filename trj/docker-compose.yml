@@ -15,8 +15,8 @@ services:
     image: nginx:1.23
     restart: always
     volumes:
-      - ./trojan/fakehttp/medi-html/:/fakehttp/
-      - ./trojan/fakehttp/nginx/:/etc/nginx/
+      - ./fakehttp/medi-html/:/fakehttp/
+      - ./fakehttp/nginx/:/etc/nginx/
   mysql:
     image: mysql:8.0
     entrypoint: ["./entrypoint.sh"]
