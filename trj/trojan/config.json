@@ -26,6 +26,21 @@
         "concurrency": 8,
         "idle_timeout": 60
     },
+    "router": {
+        "enabled": true,
+        "proxy": [
+            "geosite:geolocation-!ir"
+        ],
+        "bypass": [
+            "geoip:ir",
+            "geoip:private",
+            "geosite:ir",
+            "geosite:geolocation-ir"
+        ],
+        "block": [
+            "geosite:category-ads"
+        ]
+    },
     "mysql": {
         "enabled": true,
         "server_addr": "mysql",
