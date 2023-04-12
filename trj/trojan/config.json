@@ -46,7 +46,7 @@
         "check_rate": 60
     },
     "api": {
-        "enabled": false,
+        "enabled": true,
         "api_addr": "0.0.0.0",
         "api_port": 8080
     }
