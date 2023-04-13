@@ -21,11 +21,6 @@
         "no_delay": true,
         "keep_alive": true
     },
-    "websocket": {
-        "enabled": true,
-        "path": "/realtime-server-side-event-pusher",
-        "host": "${DOMAIN}"
-    },
     "mux": {
         "enabled": false,
         "concurrency": 8,
