@@ -21,6 +21,11 @@
         "no_delay": true,
         "keep_alive": true
     },
+    "websocket": {
+        "enabled": true,
+        "path": "/realtime-server-side-event-pusher",
+        "host": "${DOMAIN}"
+    },
     "mux": {
         "enabled": false,
         "concurrency": 8,
@@ -31,9 +36,6 @@
         "bypass": [
             "geoip:ir",
             "geoip:private"
-        ],
-        "block": [
-            "geosite:category-ads"
         ]
     },
     "mysql": {
@@ -43,7 +45,7 @@
         "database": "trojan",
         "username": "trojan",
         "password": "trojan",
-        "check_rate": 60
+        "check_rate": 5
     },
     "api": {
         "enabled": true,
