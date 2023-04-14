@@ -21,18 +21,6 @@
         "no_delay": true,
         "keep_alive": true
     },
-    "mux": {
-        "enabled": false,
-        "concurrency": 8,
-        "idle_timeout": 60
-    },
-    "router": {
-        "enabled": true,
-        "bypass": [
-            "geoip:ir",
-            "geoip:private"
-        ]
-    },
     "mysql": {
         "enabled": true,
         "server_addr": "mysql",

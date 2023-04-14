@@ -28,4 +28,4 @@ services:
       MYSQL_PASSWORD: trojan
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/create_users_table.sql:/docker-entrypoint-initdb.d/create_users_table.sql
+      - ./mysql/initdb.d/:/docker-entrypoint-initdb.d/create_users_table.sql

@@ -5,33 +5,34 @@ function run() {
 }
 
 function ping_db() {
-    while true; do mysql -h mysql -u trojan -p trojan -e 'show databases' && return; done;
+    while true; do mysql -hmysql -utrojan -ptrojan <<< "show databases" &> /dev/null && return; done;
 }
 
-function get_users() {
-    mysql -h mysql -u trojan -p trojan <<< """
-        \u trojan
-        select * from users;
-    """
+function query_users() {
+    mysql -hmysql -utrojan -ptrojan -Dtrojan -sN <<< "select * from users;"
 }
 
 function set_bandwidth() {
-    while IFS=$'\n' read -r _ _ PASSWORD _ _ _; do
+    while read -r _ _ PASSWORD _ _ _; do
+        trojan-go -api-addr trojan:8080 -api set -add-profile \
+            -target-password "$PASSWORD" && \
         trojan-go -api-addr trojan:8080 -api set -modify-profile \
             -target-password "$PASSWORD" \
             -ip-limit 5 \
             -upload-speed-limit 5242880 \
-            -download-speed-limit 5242880 \
-            -quota 0
+            -download-speed-limit 5242880
     done
 }
+
+function update_users() {
+    while true; do query_users | set_bandwidth && sleep 5; done
+}
+
+ping_db
 
 run &
 sleep 2
 
-ping_db
-get_users
-set_bandwidth
+update_users &
 
-fg
-
+wait
