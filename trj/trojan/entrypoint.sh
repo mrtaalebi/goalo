@@ -15,12 +15,12 @@ function query_users() {
 function set_bandwidth() {
     while read -r _ _ PASSWORD _ _ _; do
         trojan-go -api-addr trojan:8080 -api set -add-profile \
-            -target-password "$PASSWORD" && \
+            -target-password "$PASSWORD" &>/dev/null && \
         trojan-go -api-addr trojan:8080 -api set -modify-profile \
             -target-password "$PASSWORD" \
             -ip-limit 5 \
             -upload-speed-limit 5242880 \
-            -download-speed-limit 5242880
+            -download-speed-limit 5242880 &>/dev/null
     done
 }
 
