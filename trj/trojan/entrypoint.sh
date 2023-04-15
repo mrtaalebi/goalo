@@ -14,7 +14,7 @@ function query_users() {
 
 function update_usage() {
     while read -r RAWPASSWORD; do
-        HASH=$(echo "$RAWPASSWORD" | sha224sum -z | cut -d' ' -f1)
+        HASH=$(echo "$RAWPASSWORD" | openssl dgst -sha224 | cut -d' ' -f2)
         mysql -hmysql -utrojan -ptrojan -Dtrojan <<< "update users set password='$HASH', quota=10485760, download=0, upload=0 where rawpassword='$RAWPASSWORD'"
         trojan-go -api-addr trojan:8080 -api set -add-profile \
             -target-password "$RAWPASSWORD" &>/dev/null && \
