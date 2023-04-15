@@ -7,6 +7,7 @@ services:
     ports:
       - "443:443"
     volumes:
+      - ./trojan/entrypoint.sh:/entrypoint.sh
       - ./trojan/config.json:/etc/trojan-go/config.json
       - /etc/letsencrypt/live/DOMAIN/fullchain.pem:/trojan/fullchain.pem
       - /etc/letsencrypt/live/DOMAIN/privkey.pem:/trojan/privkey.pem
@@ -28,4 +29,4 @@ services:
       MYSQL_PASSWORD: trojan
     volumes:
       - ./mysql/data:/var/lib/mysql
-      - ./mysql/initdb.d/:/docker-entrypoint-initdb.d/create_users_table.sql
+      - ./mysql/initdb.d/:/docker-entrypoint-initdb.d/
