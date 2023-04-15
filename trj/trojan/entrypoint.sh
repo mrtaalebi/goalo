@@ -15,19 +15,17 @@ function query_users() {
 function update_usage() {
     while read -r RAWPASSWORD; do
         HASH=$(echo -n "$RAWPASSWORD" | openssl dgst -sha224 | cut -d' ' -f2)
-        mysql -hmysql -utrojan -ptrojan -Dtrojan <<< "update users set password='$HASH', quota=10485760, download=0, upload=0 where rawpassword='$RAWPASSWORD'"
+        mysql -hmysql -utrojan -ptrojan -Dtrojan <<< "update users set password='$HASH', quota=62914560, download=0, upload=0 where rawpassword='$RAWPASSWORD'"
         trojan-go -api-addr trojan:8080 -api set -add-profile \
             -target-password "$RAWPASSWORD" &>/dev/null && \
         trojan-go -api-addr trojan:8080 -api set -modify-profile \
-            -target-password "$RAWPASSWORD" \
-            -ip-limit 5 \
-            -upload-speed-limit 2097152 \
-            -download-speed-limit 2097152 &>/dev/null
+            -target-hash "$HASH" \
+            -ip-limit 1 &>/dev/null
     done
 }
 
 function update_users() {
-    while true; do query_users | update_usage && sleep 5; done
+    while true; do query_users | update_usage && sleep 60; done
 }
 
 ping_db

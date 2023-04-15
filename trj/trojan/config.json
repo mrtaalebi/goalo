@@ -28,7 +28,7 @@
         "database": "trojan",
         "username": "trojan",
         "password": "trojan",
-        "check_rate": 5
+        "check_rate": 60
     },
     "api": {
         "enabled": true,
