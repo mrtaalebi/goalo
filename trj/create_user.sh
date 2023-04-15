@@ -6,7 +6,7 @@ function generate_password() {
 }
 
 function insert_user() {
-    mysql -hmysql -utrojan -ptrojan -Dtrojan -sN <<< "insert into users(username, rawpassword) values('$REMARKS', '$PASSWORD');"
+    docker compose exec -it mysql sh -c """mysql -hmysql -utrojan -ptrojan -Dtrojan -sN <<< \"insert into users(username, rawpassword) values('$REMARKS', '$PASSWORD');\"""" &>/dev/null
 }
 
 function generate_connstr() {
