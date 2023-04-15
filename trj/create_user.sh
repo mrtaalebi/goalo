@@ -10,7 +10,7 @@ function insert_user() {
 }
 
 function generate_connstr() {
-    printf 'trojan://%s@shop.pandaha.work?security=tls&alpn=http/1.1&headerType=none&fp=chrome&type=tcp&sni=shop.pandaha.work#%s' "$PASSWORD" "$REMARKS"
+    printf '\ntrojan://%s@shop.pandaha.work?security=tls&alpn=http/1.1&headerType=none&fp=chrome&type=tcp&sni=shop.pandaha.work#%s\n' "$PASSWORD" "$REMARKS"
 }
 
 function main() {
