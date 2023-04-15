@@ -9,23 +9,25 @@ function ping_db() {
 }
 
 function query_users() {
-    mysql -hmysql -utrojan -ptrojan -Dtrojan -sN <<< "select * from users;"
+    mysql -hmysql -utrojan -ptrojan -Dtrojan -sN <<< "select rawpassword from users;"
 }
 
-function set_bandwidth() {
-    while read -r _ _ PASSWORD _ _ _; do
+function update_usage() {
+    while read -r RAWPASSWORD; do
+        HASH=$(echo "$RAWPASSWORD" | sha224sum -z | cut -d' ' -f1)
+        mysql -hmysql -utrojan -ptrojan -Dtrojan <<< "update users set password='$HASH', quota=10485760, download=0, upload=0 where rawpassword='$RAWPASSWORD'"
         trojan-go -api-addr trojan:8080 -api set -add-profile \
-            -target-password "$PASSWORD" &>/dev/null && \
+            -target-password "$RAWPASSWORD" &>/dev/null && \
         trojan-go -api-addr trojan:8080 -api set -modify-profile \
-            -target-password "$PASSWORD" \
+            -target-password "$RAWPASSWORD" \
             -ip-limit 5 \
-            -upload-speed-limit 5242880 \
-            -download-speed-limit 5242880 &>/dev/null
+            -upload-speed-limit 2097152 \
+            -download-speed-limit 2097152 &>/dev/null
     done
 }
 
 function update_users() {
-    while true; do query_users | set_bandwidth && sleep 5; done
+    while true; do query_users | update_usage && sleep 5; done
 }
 
 ping_db
